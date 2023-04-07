@@ -1,19 +1,8 @@
 <script>
 	import Header from './Header.svelte';
-	import { RadioStatic } from 'radio-color-system';
-
-	const colors = [
-		{ color: { h: 200, s: 12, l: 60 }, name: 'secondary' },
-		{
-			color: { h: 240, s: 60, l: 70 },
-			name: 'primary'
-		},
-		{ color: { h: 342, s: 25, l: 61 }, name: 'tertiary' },
-		{ color: { h: 270, s: 2, l: 57 }, name: 'neutral' }
-	];
 </script>
 
-<RadioStatic {colors}>
+<div class="container">
 	<Header />
 	<div class="card secondary-80 secondary-font-80">
 		<h3>
@@ -65,12 +54,10 @@
 			diam ac libero facilisis dictum sed et sem.
 		</p>
 	</div>
-</RadioStatic>
+</div>
 
 <style lang="scss">
 	.card {
-		width: 1024px;
-		margin: auto;
 		border-radius: 0.5rem;
 		padding: 1rem;
 		margin: 2rem auto;
@@ -91,5 +78,18 @@
 	.underline {
 		text-decoration: line-through;
 		font-size: 1rem;
+	}
+
+	.container {
+		margin: auto;
+		padding: 0 1rem;
+
+		@media (min-width: 1281px) {
+			max-width: 1280px;
+		}
+
+		@media (min-width: 1024) {
+			max-width: 1024px;
+		}
 	}
 </style>
