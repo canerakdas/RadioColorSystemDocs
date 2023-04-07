@@ -1,9 +1,19 @@
 <script>
 	import Header from './Header.svelte';
+	import Card from '../components/Card.svelte';
+	import RadioInput from '../components/RadioInput.svelte';
 </script>
 
 <div class="container">
 	<Header />
+	<Card headerType="h4" kind="neutral" header="Color scheme">
+		<fieldset>
+			<RadioInput id="dewey" name="drone" value="1" checked label="Primary" />
+			<RadioInput id="dewey" name="drone" value="2" label="Secondary" />
+			<RadioInput id="dewey" name="drone" value="3" label="Tertiary" />
+			<RadioInput id="dewey" name="drone" value="4" label="Neutral" />
+		</fieldset>
+	</Card>
 	<div class="card secondary-80 secondary-font-80">
 		<h3>
 			<span class="secondary-80 secondary-font-80">Header</span>
@@ -20,7 +30,6 @@
 			diam ac libero facilisis dictum sed et sem.
 		</p>
 	</div>
-	<div class="card neutral-80">asdfs</div>
 
 	<div class="card secondary-80 secondary-font-80">
 		<h3>
@@ -57,6 +66,15 @@
 </div>
 
 <style lang="scss">
+	fieldset {
+		display: flex;
+		gap: 1rem;
+		border: none;
+		background: var(--neutral-70);
+		border-radius: 4px;
+		padding: 1rem;
+		margin-top: 1rem;
+	}
 	.card {
 		border-radius: 0.5rem;
 		padding: 1rem;

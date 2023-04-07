@@ -1,11 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
-
+	import RangeInput from '../components/RangeInput.svelte';
 	import { RadioStatic } from 'radio-color-system';
-	const colors = [
+	let colors = [
 		{ color: { h: 200, s: 12, l: 70 }, name: 'secondary' },
 		{
-			color: { h: 240, s: 48, l: 60 },
+			color: { h: 240, s: 24, l: 48 },
 			name: 'primary'
 		},
 		{ color: { h: 342, s: 25, l: 61 }, name: 'tertiary' },
@@ -15,7 +15,7 @@
 
 <RadioStatic {colors} async={true} />
 
-<header>
+<header class="primary-90">
 	<div>
 		<h1 class="header-logo">
 			<span class="header-logo--main primary-font-70">Radio</span>
@@ -27,88 +27,39 @@
 			{/each}
 		</div>
 	</div>
-	<div class="vertical-container">
-		<div class="vertical">
-			<h2 class="neutral-font-80">Saturation</h2>
-			<input
-				class="sat"
-				type="range"
-				list="tickmark"
-				min="0"
-				max="100"
+	<div class="r-side">
+		<div class="vertical-container">
+			<RangeInput
+				name="sat"
+				header="Saturation"
+				icon="vital_signs"
 				bind:value={colors[1].color.s}
 			/>
-
-			<datalist id="tickmark">
-				{#each [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] as frequency}
-					<option
-						class={frequency % 10 === 0
-							? 'neutral-font-90 tickmark--text'
-							: 'neutral-font-50 neutral-60 tickmark--tick'}
-						value={frequency}
-						label={frequency % 10 === 0 ? String(frequency) : ''}
-					/>
-				{/each}
-			</datalist>
+			<RangeInput name="light" header="Light" icon="light_mode" bind:value={colors[1].color.l} />
 		</div>
-		<div class="vertical">
-			<h2 class="neutral-font-80">
-				<span class="material-symbols-outlined"> light_mode </span>Lightning
-				<span class="range--value primary-80 primary-font-80">{colors[1].color.l}%</span>
-			</h2>
-			<input
-				class="sat"
-				type="range"
-				list="tickmark"
-				min="0"
-				max="100"
-				bind:value={colors[1].color.l}
-			/>
-
-			<datalist id="tickmark">
-				{#each [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] as frequency}
-					<option
-						class={frequency % 10 === 0 ? 'neutral-font-90 tickmark--text' : 'tickmark--tick'}
-						value={frequency}
-						label={frequency % 10 === 0 ? String(frequency) : ''}
-					/>
-				{/each}
-			</datalist>
-		</div>
-	</div>
-	<fieldset>
-		<legend><span class="material-symbols-outlined">format_paint</span>Color scheme</legend>
-
-		<div>
-			<input type="radio" id="huey" name="drone" value="huey" checked />
-			<label for="huey">Primary</label>
-		</div>
-
-		<div>
-			<input type="radio" id="dewey" name="drone" value="dewey" />
-			<label for="dewey">Secondary</label>
-		</div>
-
-		<div>
-			<input type="radio" id="louie" name="drone" value="louie" />
-			<label for="louie">Tertiary</label>
-		</div>
-
-		<div>
-			<input type="radio" id="louie" name="drone" value="louie" />
-			<label for="louie">Neutral</label>
-		</div>
-	</fieldset>
-	<div class="knob">
-		<div class="knob-container neutral-70">
-			<div class="primary-60 knob-button">
-				<div class="knob-button--inner neutral-70 neutral-font-70">360°</div>
+		<div class="knob">
+			<div class="knob-container neutral-70">
+				<div class="primary-60 knob-button">
+					<div class="knob-button--inner neutral-70 neutral-font-70">360°</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </header>
 
 <style lang="scss">
+	.r-side {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+		z-index: 1;
+	}
+	.vertical-container {
+		display: flex;
+		gap: 0.5rem;
+		flex-direction: column;
+	}
+
 	fieldset {
 		border: 2px solid var(--neutral-80);
 		color: var(--neutral-font-80);
@@ -124,50 +75,17 @@
 			align-items: center;
 		}
 	}
-	input[type='radio'] {
-		display: none;
-	}
-
-	label {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 12px;
-		line-height: 16px;
-		cursor: pointer;
-		color: var(--neutral-font-80);
-	}
-
-	input[type='radio'] + label:before {
-		content: '';
-		display: inline-block;
-		width: 1rem;
-		height: 1rem;
-		cursor: pointer;
-		border-radius: 50%;
-		background: var(--primary-font-50);
-	}
-
-	input[type='radio']:checked + label:before {
-		content: '';
-		width: 1rem;
-		height: 1rem;
-		border-radius: 50%;
-		background: var(--primary-50);
-		box-shadow: inset 0 0 0 2px var(--primary-font-50);
-		transition: all 0.2s ease-in-out;
-	}
 	.color {
 		position: absolute;
 		display: flex;
-		top: -80px;
-		left: 0;
+		top: -180px;
+		left: 0px;
 		transform: rotate(320deg);
-		z-index: -1;
+		z-index: 0;
 
 		&--item {
-			width: 2em;
-			height: 30rem;
+			width: 6em;
+			height: 40rem;
 		}
 	}
 	.knob-container {
@@ -198,32 +116,6 @@
 		}
 	}
 
-	input[type='range'] {
-		-webkit-appearance: none;
-		height: 10px;
-		background: var(--neutral-80);
-		border-radius: 2px;
-		border: 1px solid var(--neutral-font-80);
-	}
-
-	input[type='range']::-webkit-slider-thumb {
-		position: relative;
-		top: -0.5rem;
-		-webkit-appearance: none;
-		height: 20px;
-		width: 40px;
-		border-radius: 1rem;
-		background: var(--primary-50);
-		cursor: pointer;
-		box-shadow: inset 0 0 0 2px var(--primary-font-50);
-		transition: background 0.1s ease-in-out;
-		z-index: 2;
-		&:hover {
-			background: var(--primary-80);
-			box-shadow: inset 0 0 0 3px var(--primary-font-80);
-		}
-	}
-
 	header {
 		position: relative;
 		overflow: hidden;
@@ -233,7 +125,9 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 200px;
+		min-height: 200px;
+
+		padding: 0 1rem;
 	}
 
 	.header-logo {
@@ -241,63 +135,21 @@
 		flex-direction: column;
 		align-items: center;
 
-		padding: 0.5rem 1rem;
+		padding: 0.5rem 0;
 		border-radius: 4px;
 
 		&--main {
-			letter-spacing: 0.25;
-			font-size: 2.3rem;
 			font-weight: 400;
+			font-size: 48px;
+			letter-spacing: 0;
+			z-index: 1;
 		}
 
 		&--sub {
-			font-size: 1rem;
-			font-weight: 600;
+			font-size: 20px;
+			font-weight: 400;
+			letter-spacing: 0;
+			z-index: 1;
 		}
-	}
-
-	h2 {
-		font-weight: 400;
-		margin: 0;
-		font-size: 1rem;
-	}
-
-	.vertical {
-		width: 400px;
-		&:first-child {
-			margin-bottom: 1rem;
-		}
-	}
-
-	datalist {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		font-size: 0.75rem;
-		font-weight: 200;
-		padding-top: 0.15rem;
-	}
-
-	.tickmark--text {
-	}
-
-	.tickmark--tick {
-		position: relative;
-		top: -18px;
-		width: 1px;
-		height: 18px;
-		padding: 0;
-		margin: 0;
-		z-index: 1;
-		background: var(--neutral-font-80);
-	}
-	input {
-		width: 100%;
-	}
-
-	.range--value {
-		font-size: 0.75rem;
-		border-radius: 4px;
-		padding: 0 0.25rem;
 	}
 </style>
