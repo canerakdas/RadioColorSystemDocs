@@ -14,6 +14,7 @@
 	.radio-input {
 		display: flex;
 		align-items: center;
+		height: 3.5rem;
 	}
 
 	input[type='radio'] {

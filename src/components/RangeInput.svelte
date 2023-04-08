@@ -94,9 +94,17 @@
 		padding-top: 0.15rem;
 	}
 
-	.range-input--text {
+	.range-input--text,
+	.range-input--tickmark {
+		position: relative;
+
+		cursor: default;
+		&::selection {
+			background: transparent;
+		}
 	}
 
+	.range-input--text:after,
 	.range-input--tickmark:after {
 		content: '';
 		position: relative;
@@ -104,13 +112,12 @@
 		height: 10px;
 		overflow: hidden;
 		display: inline-block;
-
-		top: -18px;
-
 		padding: 0;
 		margin: 0;
-
 		z-index: 1;
 		background: var(--neutral-font-80);
+		position: absolute;
+		left: 50%;
+		top: -17px;
 	}
 </style>

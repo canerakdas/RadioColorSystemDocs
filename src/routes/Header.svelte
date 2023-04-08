@@ -166,7 +166,12 @@
 				icon="vital_signs"
 				bind:value={colors[1].color.s}
 			/>
-			<RangeInput name="light" header="Light" icon="light_mode" bind:value={colors[1].color.l} />
+			<RangeInput
+				name="light"
+				header="Light"
+				icon={colors[1].color.l > 40 ? 'light_mode' : 'dark_mode'}
+				bind:value={colors[1].color.l}
+			/>
 		</div>
 		<canvas id="knobCanvas" width="150" height="150" />
 	</div>
