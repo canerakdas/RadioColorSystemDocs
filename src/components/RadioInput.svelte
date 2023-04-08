@@ -3,16 +3,19 @@
 	export let value;
 	export let checked;
 	export let label;
-
-	const id = `radio-input-${name}`;
 </script>
 
-<div>
-	<input type="radio" {id} {name} bind:value {checked} />
-	<label for={id}>{label}</label>
+<div class="radio-input">
+	<input type="radio" id={value} {name} bind:value {checked} />
+	<label for={value}>{label}</label>
 </div>
 
 <style lang="scss">
+	.radio-input {
+		display: flex;
+		align-items: center;
+	}
+
 	input[type='radio'] {
 		display: none;
 	}

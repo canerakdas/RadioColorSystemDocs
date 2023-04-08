@@ -1,5 +1,5 @@
 <script>
-	import Subtile from './Subtile.svelte';
+	import Subtitle from './Subtitle.svelte';
 
 	export let header = '';
 	export let name = '';
@@ -29,7 +29,7 @@
 </script>
 
 <div class="range-input">
-	<Subtile {icon}>{header}</Subtile>
+	<Subtitle {icon}>{header}</Subtitle>
 	<input class="range-input--input" type="range" list={id} {min} {max} bind:value />
 	{#if datalist}
 		<datalist class="range-input--datalist" {id}>
@@ -69,7 +69,7 @@
 
 			-webkit-appearance: none;
 			background: var(--primary-50);
-			box-shadow: inset 0 0 0 2px var(--primary-font-50);
+			box-shadow: inset 0 0 0 1px var(--neutral-font-50);
 			border-radius: 1rem;
 			cursor: pointer;
 
@@ -77,7 +77,7 @@
 
 			&:hover {
 				background: var(--primary-80);
-				box-shadow: inset 0 0 0 3px var(--primary-font-80);
+				box-shadow: inset 0 0 0 2px var(--neutral-font-80);
 			}
 		}
 	}
@@ -97,10 +97,13 @@
 	.range-input--text {
 	}
 
-	.range-input--tickmark {
+	.range-input--tickmark:after {
+		content: '';
 		position: relative;
 		width: 1px;
-		height: 18px;
+		height: 10px;
+		overflow: hidden;
+		display: inline-block;
 
 		top: -18px;
 

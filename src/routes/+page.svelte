@@ -6,17 +6,26 @@
 
 <div class="container">
 	<Header />
-	<Card headerType="h4" kind="neutral" header="Color scheme">
+	<div class="neutral-80 test">
 		<fieldset>
-			<RadioInput id="dewey" name="drone" value="1" checked label="Primary" />
-			<RadioInput id="dewey" name="drone" value="2" label="Secondary" />
-			<RadioInput id="dewey" name="drone" value="3" label="Tertiary" />
-			<RadioInput id="dewey" name="drone" value="4" label="Neutral" />
+			<RadioInput id="huey" name="a" value="huey" checked label="Primary Color" />
+			<RadioInput id="dewey" name="a" value="dewey" label="Secondary Color" />
+			<RadioInput id="c" name="a" value="c" label="Tertiary Color" />
+			<RadioInput id="d" name="a" value="d" label="Neutral" />
 		</fieldset>
-	</Card>
-	<div class="card secondary-80 secondary-font-80">
+	</div>
+	<div class="primary-0 test">
+		<div class="hece">
+			{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as codes}
+				<div class={`primary-${codes} primary-font-${codes} hehe`}>
+					{codes}
+				</div>
+			{/each}
+		</div>
+	</div>
+	<div class="card secondary-90 secondary-font-90">
 		<h3>
-			<span class="secondary-80 secondary-font-80">Header</span>
+			<span class="secondary-90 secondary-font-90">Header</span>
 			<span class="underline">not header</span>
 		</h3>
 		<p>
@@ -31,9 +40,9 @@
 		</p>
 	</div>
 
-	<div class="card secondary-80 secondary-font-80">
+	<div class="card secondary-90 secondary-font-90">
 		<h3>
-			<span class="secondary-80 secondary-font-80">Header</span>
+			<span class="secondary-90 secondary-font-90">Header</span>
 			<span class="underline">not header</span>
 		</h3>
 		<p>
@@ -66,36 +75,34 @@
 </div>
 
 <style lang="scss">
+	.test {
+		margin: 0;
+		border-radius: 4px;
+		display: flex;
+		justify-content: space-between;
+		overflow: hidden;
+	}
+
+	.hehe {
+		width: 3rem;
+		height: 3rem;
+		font-size: 14px;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-end;
+		padding: 4px;
+	}
+
+	.hece {
+		display: flex;
+	}
+
 	fieldset {
 		display: flex;
 		gap: 1rem;
 		border: none;
-		background: var(--neutral-70);
-		border-radius: 4px;
-		padding: 1rem;
-		margin-top: 1rem;
-	}
-	.card {
-		border-radius: 0.5rem;
-		padding: 1rem;
-		margin: 2rem auto;
-		p {
-			color: currentColor;
-		}
-	}
-
-	h3 {
+		padding: 0 1rem;
 		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		font-size: 2rem;
-		font-weight: 300;
-	}
-
-	.underline {
-		text-decoration: line-through;
-		font-size: 1rem;
 	}
 
 	.container {
