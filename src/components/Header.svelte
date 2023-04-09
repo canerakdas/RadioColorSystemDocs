@@ -21,12 +21,14 @@
 		font-weight: 200;
 		font-size: 48px;
 		letter-spacing: 0;
+		margin: 0.5rem 0 0 0;
 	}
 
 	h4 {
 		font-weight: 200;
 		font-size: 34px;
 		letter-spacing: 0.25px;
+		margin: 0.5rem 0 0 0;
 	}
 
 	h5 {

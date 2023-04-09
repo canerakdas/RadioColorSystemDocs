@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@material/typography": "^14.0.0",
 		"radio-color-system": "^0.0.10",
 		"sass": "^1.60.0"
 	}

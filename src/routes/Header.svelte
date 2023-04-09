@@ -5,7 +5,7 @@
 	let colors = [
 		{ color: { h: 200, s: 12, l: 70 }, name: 'secondary' },
 		{
-			color: { h: 30, s: 24, l: 48 },
+			color: { h: 240, s: 24, l: 48 },
 			name: 'primary'
 		},
 		{ color: { h: 342, s: 25, l: 61 }, name: 'tertiary' },
@@ -63,7 +63,7 @@
 
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, radius - 10, 0, Math.PI * 2);
-			ctx.lineWidth = 2;
+			ctx.lineWidth = 1;
 
 			ctx.stroke();
 
@@ -149,14 +149,9 @@
 <header class="primary-90">
 	<div>
 		<h1 class="header-logo">
-			<span class="header-logo--main primary-font-70">Radio</span>
-			<span class="header-logo--sub primary-font-70">Color System</span>
+			<span class="header-logo--main primary-font-70 mdc-typography--headline2">Radio</span>
+			<span class="header-logo--sub primary-font-70 mdc-typography--headline4">Color System</span>
 		</h1>
-		<div class="color">
-			{#each [50, 60, 70, 80, 90] as codes}
-				<div class={`primary-${codes} primary-font-${codes} color--item`} />
-			{/each}
-		</div>
 	</div>
 	<div class="r-side">
 		<div class="vertical-container">
@@ -225,40 +220,66 @@
 	}
 
 	header {
-		position: relative;
 		overflow: hidden;
 		margin: 2rem 0;
 		border-radius: 8px;
-
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		min-height: 200px;
+		align-items: flex-start;
+		background: linear-gradient(270deg, var(--neutral-80), var(--primary-80), var(--neutral-80));
+		background-size: 400% 400%;
+		padding: 4rem 1rem;
 
-		padding: 0 1rem;
+		animation: AnimationName 32s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 
-		background: linear-gradient(130deg, var(--primary-80) 0%, var(--neutral-80) 100%);
+		@-webkit-keyframes AnimationName {
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+		@-moz-keyframes AnimationName {
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+		@keyframes AnimationName {
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
+		}
 	}
 
 	.header-logo {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: start;
 
 		padding: 0.5rem 0;
 		border-radius: 4px;
 
 		&--main {
-			font-weight: 400;
-			font-size: 48px;
-			letter-spacing: 0;
 			z-index: 1;
 		}
 
 		&--sub {
-			font-size: 20px;
-			font-weight: 400;
-			letter-spacing: 0;
 			z-index: 1;
 		}
 	}
