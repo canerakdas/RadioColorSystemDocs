@@ -3,18 +3,27 @@
 	export let value;
 	export let checked;
 	export let label;
+	export let click;
 </script>
 
 <div class="radio-input">
 	<input type="radio" id={value} {name} bind:value {checked} />
-	<label for={value}>{label}</label>
+	<label
+		for={value}
+		on:click={() => {
+			click();
+		}}
+	>
+		<div class="mdc-typography--button">
+			{label}
+		</div>
+	</label>
 </div>
 
 <style lang="scss">
 	.radio-input {
 		display: flex;
 		align-items: center;
-		height: 3.5rem;
 	}
 
 	input[type='radio'] {
@@ -23,31 +32,27 @@
 
 	label {
 		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 12px;
-		line-height: 16px;
+		align-items: flex-start;
 		cursor: pointer;
+		padding: 0 2rem;
+		border-radius: 50px;
+		flex-direction: column;
 		color: var(--neutral-font-80);
+		margin: 0.5rem 0;
+		transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	}
 
-	input[type='radio'] + label:before {
-		content: '';
-		display: inline-block;
-		width: 1rem;
-		height: 1rem;
-		cursor: pointer;
-		border-radius: 50%;
-		background: var(--primary-font-50);
+	label:hover {
+		box-shadow: 0 0 0 2px var(--neutral-80), 0 0 0 4px var(--neutral-50);
 	}
 
-	input[type='radio']:checked + label:before {
-		content: '';
-		width: 1rem;
-		height: 1rem;
-		border-radius: 50%;
-		background: var(--primary-50);
-		box-shadow: inset 0 0 0 2px var(--primary-font-50);
-		transition: all 0.2s ease-in-out;
+	input[type='radio']:checked + label {
+		box-shadow: 0 0 0 2px var(--neutral-80), 0 0 0 4px var(--primary-50);
+		background-color: var(--primary-70);
+		color: var(--primary-font-70);
+	}
+
+	.caption {
+		margin-bottom: 0.25rem;
 	}
 </style>

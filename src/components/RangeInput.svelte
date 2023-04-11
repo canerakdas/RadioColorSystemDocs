@@ -11,7 +11,7 @@
 
 	const getFrequencyClass = (frequency) => {
 		if (frequency % 10 === 0) {
-			return 'neutral-font-90 range-input--text';
+			return 'primary-font-80 range-input--text mdc-typography--caption';
 		} else {
 			return 'range-input--tickmark';
 		}
@@ -29,11 +29,16 @@
 </script>
 
 <div class="range-input">
-	<Subtitle {icon}>{header}</Subtitle>
+	<div class="range-input--header primary-font-90">
+		{#if icon !== ''}
+			<span class="material-symbols-outlined">{icon}</span>
+			<div class="mdc-typography--headline6">{header}</div>
+		{/if}
+	</div>
 	<input class="range-input--input" type="range" list={id} {min} {max} bind:value />
 	{#if datalist}
 		<datalist class="range-input--datalist" {id}>
-			{#each [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] as frequency}
+			{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as frequency}
 				<option
 					class={getFrequencyClass(frequency)}
 					value={frequency}
@@ -54,9 +59,9 @@
 		height: 0.625rem;
 
 		-webkit-appearance: none;
-		background: var(--neutral-80);
+		background: none;
 
-		border: 1px solid var(--neutral-font-80);
+		border: 1px solid var(--primary-font-80);
 		border-radius: 2px;
 
 		&::-webkit-slider-thumb {
@@ -66,29 +71,25 @@
 			position: relative;
 			top: -6px;
 			z-index: 2;
+			border-radius: 4px;
 
 			-webkit-appearance: none;
-			background: var(--primary-50);
-			box-shadow: inset 0 0 0 1px var(--neutral-font-50);
-			border-radius: 1rem;
+			background: var(--primary-font-90);
 			cursor: pointer;
 
 			transition: background 0.1s ease-in-out;
 
 			&:hover {
-				background: var(--primary-80);
-				box-shadow: inset 0 0 0 2px var(--neutral-font-80);
+				background: var(--primary-font-80);
 			}
 		}
 	}
 
 	.range-input--datalist {
 		display: flex;
-		justify-content: space-between;
 
 		width: 100%;
 
-		font-size: 0.75rem;
 		font-weight: 200;
 
 		padding-top: 0.15rem;
@@ -97,7 +98,8 @@
 	.range-input--text,
 	.range-input--tickmark {
 		position: relative;
-
+		width: 100%;
+		text-align: center;
 		cursor: default;
 		&::selection {
 			background: transparent;
@@ -115,9 +117,16 @@
 		padding: 0;
 		margin: 0;
 		z-index: 1;
-		background: var(--neutral-font-80);
+		background: var(--primary-font-80);
 		position: absolute;
-		left: 50%;
+		left: 0;
 		top: -17px;
+	}
+
+	.range-input--header {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		margin-bottom: 0.5rem;
 	}
 </style>

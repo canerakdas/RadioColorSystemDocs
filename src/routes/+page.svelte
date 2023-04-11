@@ -4,22 +4,60 @@
 	import RadioInput from '../components/RadioInput.svelte';
 	import Subtitle from '../components/Subtitle.svelte';
 	import Attribute from '../components/Attribute.svelte';
-	import styles from './styles.scss';
+	import { RadioActive } from 'radio-color-system';
+
+	import './styles.scss';
+
+	let index = 1;
 </script>
 
 <div class="container">
-	<Header />
+	<Header {index} />
 	<div class="attr">
-		<div class="neutral-80 test">
+		<div class="neutral-80 metest">
 			<div class="at neutral-font-80">
 				<span class="material-symbols-outlined"> format_paint </span>
 				<span class="mdc-typography--subtitle2">Colors</span>
 			</div>
 			<fieldset>
-				<RadioInput id="huey" name="a" value="huey" checked label="Primary Color" />
-				<RadioInput id="dewey" name="a" value="dewey" label="Secondary Color" />
-				<RadioInput id="c" name="a" value="c" label="Tertiary Color" />
-				<RadioInput id="d" name="a" value="d" label="Neutral" />
+				<RadioInput
+					click={(e) => {
+						index = 1;
+						console.log(index);
+					}}
+					id="huey"
+					name="a"
+					value="huey"
+					checked
+					label="Primary"
+				/>
+				<RadioInput
+					click={(e) => {
+						index = 0;
+					}}
+					id="dewey"
+					name="a"
+					value="dewey"
+					label="Secondary"
+				/>
+				<RadioInput
+					click={(e) => {
+						index = 2;
+					}}
+					id="c"
+					name="a"
+					value="c"
+					label="Tertiary"
+				/>
+				<RadioInput
+					click={(e) => {
+						index = 3;
+					}}
+					id="d"
+					name="a"
+					value="d"
+					label="Neutral"
+				/>
 			</fieldset>
 		</div>
 		<div class="primary-0 test">
@@ -36,18 +74,62 @@
 			</div>
 		</div>
 	</div>
-	<Card header="Motivation" kind="secondary">
-		<p>
-			System design libraries offer a plethora of elements that can be overwhelming to navigate.
-			However, incorporating a system change library into your project can enhance your productivity
-			and simplify development processes. Yet, customization and optimization can be challenging to
-			implement. Fortunately, Svelte's unique and intuitive structure eliminates the need for most
-			component library dependencies.
-		</p>
-		<p>
-			With Radio Color System & Svelte, you can easily create your own color system and rapidly
-			develop your desired components.
-		</p>
+	<Card header="Why?" kind="neutral">
+		<div class="tt">
+			<p class="mdc-typography--body1">
+				System design libraries offer a plethora of elements that can be overwhelming to navigate.
+				However, incorporating a system change library into your project can enhance your
+				productivity and simplify development processes. Yet, customization and optimization can be
+				challenging to implement. Fortunately, Svelte's unique and intuitive structure eliminates
+				the need for most component library dependencies.
+			</p>
+			<p class="mdc-typography--subtitle1">
+				With Radio Color System & Svelte, you can easily create your own color system and rapidly
+				develop your desired components.
+			</p>
+		</div>
+	</Card>
+
+	<Card header="Usage" kind="secondary">
+		<div class="tt">
+			<p class="mdc-typography--body1">
+				System design libraries offer a plethora of elements that can be overwhelming to navigate.
+				However, incorporating a system change library into your project can enhance your
+				productivity and simplify development processes. Yet, customization and optimization can be
+				challenging to implement. Fortunately, Svelte's unique and intuitive structure eliminates
+				the need for most component library dependencies.
+			</p>
+			<p class="mdc-typography--subtitle1">
+				With Radio Color System & Svelte, you can easily create your own color system and rapidly
+				develop your desired components.
+			</p>
+		</div>
+	</Card>
+	<RadioActive>
+		<Card header="Example usage of dynamic colors" kind="dynamic">
+			<img class="active" width="200" src="/mando.png" alt="Example usage of dynamic colors" />
+			This is the way
+		</Card>
+		<Card header="Example usage of dynamic colors" kind="dynamic">
+			<img class="active" width="200" src="/mando.png" alt="Example usage of dynamic colors" />
+			This is the way
+		</Card>
+	</RadioActive>
+
+	<Card header="Radio active" kind="secondary">
+		<div class="tt">
+			<p class="mdc-typography--body1">
+				System design libraries offer a plethora of elements that can be overwhelming to navigate.
+				However, incorporating a system change library into your project can enhance your
+				productivity and simplify development processes. Yet, customization and optimization can be
+				challenging to implement. Fortunately, Svelte's unique and intuitive structure eliminates
+				the need for most component library dependencies.
+			</p>
+			<p class="mdc-typography--subtitle1">
+				With Radio Color System & Svelte, you can easily create your own color system and rapidly
+				develop your desired components.
+			</p>
+		</div>
 	</Card>
 
 	<Card header="RadioStatic" kind="neutral" id="radio-static" alt="Radio Static Component">
@@ -246,12 +328,14 @@
 			element="hue"
 		/>
 	</Card>
-	<Card header="Example usage of dynamic colors">haha</Card>
 </div>
 
 <div class="neutral-80 neutral-font-80">i have spoken</div>
 
 <style lang="scss">
+	.tt {
+		padding: 0 1rem;
+	}
 	.attr {
 		display: flex;
 		background: var(--neutral-80);
@@ -266,8 +350,14 @@
 		padding-left: 1rem;
 		font-size: 0.75rem;
 	}
+	.metest {
+		display: flex;
+		overflow: hidden;
+		justify-content: space-between;
+		align-items: center;
+		margin: 1rem 0;
+	}
 	.test {
-		margin: 0;
 		display: flex;
 		overflow: hidden;
 		justify-content: space-between;

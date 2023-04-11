@@ -10,7 +10,8 @@
 		primary: 'primary-90 primary-font-90',
 		neutral: 'neutral-90 neutral-font-90',
 		secondary: 'secondary-90 secondary-font-90',
-		tertiary: 'tertiary-90 tertiary-font-90'
+		tertiary: 'tertiary-90 tertiary-font-90',
+		dynamic: 'dynamic-90 dynamic-font-90'
 	};
 </script>
 
