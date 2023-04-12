@@ -20,16 +20,17 @@
 	};
 
 	const id = `range-input-${name}`;
+	const inputId = `input-${name}`;
 </script>
 
 <div class="range-input">
-	<div class="range-input--header {kind}-font-90">
+	<label for={inputId} class="range-input--header {kind}-font-90">
 		{#if icon !== ''}
 			<span class="material-symbols-outlined">{icon}</span>
 			<div class="mdc-typography--headline6">{header}</div>
 		{/if}
-	</div>
-	<input class="range-input--input" type="range" list={id} {min} {max} bind:value />
+	</label>
+	<input id={inputId} class="range-input--input" type="range" list={id} {min} {max} bind:value />
 	{#if datalist}
 		<datalist class="range-input--datalist" {id}>
 			{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as frequency}

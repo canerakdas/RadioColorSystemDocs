@@ -103,22 +103,30 @@
 		});
 
 		// Update the angle of the knob when it is touched and dragged
-		canvas.addEventListener('touchstart', (event) => {
-			const rect = canvas.getBoundingClientRect();
-			const touchX = event.touches[0].clientX - rect.left;
-			const touchY = event.touches[0].clientY - rect.top;
+		canvas.addEventListener(
+			'touchstart',
+			(event) => {
+				const rect = canvas.getBoundingClientRect();
+				const touchX = event.touches[0].clientX - rect.left;
+				const touchY = event.touches[0].clientY - rect.top;
 
-			if (Math.sqrt((touchX - centerX) ** 2 + (touchY - centerY) ** 2) <= radius) {
-				canvas.addEventListener('touchmove', dragKnob);
-			}
-			document.body.style.overflow = 'hidden';
-		});
+				if (Math.sqrt((touchX - centerX) ** 2 + (touchY - centerY) ** 2) <= radius) {
+					canvas.addEventListener('touchmove', dragKnob);
+				}
+				document.body.style.overflow = 'hidden';
+			},
+			{ passive: true }
+		);
 
 		// Stop updating the angle of the knob when the touch is released
-		canvas.addEventListener('touchend', () => {
-			canvas.removeEventListener('touchmove', dragKnob);
-			document.body.style.overflow = 'initial';
-		});
+		canvas.addEventListener(
+			'touchend',
+			() => {
+				canvas.removeEventListener('touchmove', dragKnob);
+				document.body.style.overflow = 'initial';
+			},
+			{ passive: true }
+		);
 
 		// Update the angle of the knob based on the mouse position
 		function dragKnob(event) {
