@@ -1,32 +1,26 @@
 <script>
-	import Header from './Header.svelte';
 	export let kind = 'primary';
-	export let header = '';
-	export let headerType = 'h4';
-	export let id = '';
-	export let alt = '';
-
-	const classes = {
-		primary: 'primary-90 primary-font-90',
-		neutral: 'neutral-90 neutral-font-90',
-		secondary: 'secondary-90 secondary-font-90',
-		tertiary: 'tertiary-90 tertiary-font-90',
-		dynamic: 'dynamic-90 dynamic-font-90'
+	export let header = {
+		text: '',
+		id: '',
+		alt: ''
 	};
 </script>
 
-<div class={`card ${classes[kind]}`}>
-	{#if header !== '' && headerType !== ''}
-		<h3 {id} class="mdc-typography--headline4">
-			{#if alt}
-				<a href={`#${id}`} {alt}>{header}</a>
+<div class="card {kind}-90 {kind}-font-90">
+	{#if header.text !== ''}
+		<h4 id={header.id} class="mdc-typography--headline4">
+			{#if header.alt}
+				<a href="#{header.id}" alt={header.alt}>
+					{header.text}
+					<span class="material-symbols-outlined {kind}-80 {kind}-font-80"> link </span>
+				</a>
 			{:else}
-				{header}
+				{header.text}
 			{/if}
-		</h3>
+		</h4>
 	{/if}
-
-	<div class={`card--content ${kind}-font-90`}>
+	<div class="card--content {kind}-font-90">
 		<slot />
 	</div>
 </div>
@@ -37,19 +31,37 @@
 		flex-direction: column;
 		border-radius: 0.5rem;
 		margin: 2rem 0;
+		padding: 1rem;
 	}
 
-	.card--content :global(.attribute:last-child .seperator) {
-		margin-bottom: 0;
-		background-color: transparent;
-	}
-	h3 {
-		padding: 0 1rem;
-		margin-bottom: 0;
+	h4 {
+		margin: 1rem 0 0 0;
+
+		&:hover {
+			span {
+				opacity: 1;
+			}
+		}
 
 		a {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+
 			color: currentColor;
 			text-decoration: none;
 		}
+	}
+
+	h4 a span {
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		opacity: 0;
+		transition: all 0.2s ease-in-out;
+	}
+
+	.card--content :global(.property:last-child hr) {
+		margin-bottom: 0;
+		background-color: transparent;
 	}
 </style>

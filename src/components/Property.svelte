@@ -1,7 +1,4 @@
 <script>
-	import Header from './Header.svelte';
-	import Tag from './Tag.svelte';
-
 	export let name;
 	export let type;
 	export let defaultValue;
@@ -13,19 +10,25 @@
 	export let alt = '';
 	export let sub = false;
 
+	import Tag from '$components/Tag.svelte';
 	export let id = `${element}-${name}`;
+
+	const propertyClass = sub ? 'property property--sub' : 'property';
 </script>
 
-<div class={sub ? 'attribute attribute--sub' : 'attribute'}>
+<div class={propertyClass}>
 	<div class="header">
-		<h4 class="mdc-typography--headline5">
+		<h5 class="mdc-typography--headline5">
 			{#if href}
 				<a {href} {alt}>{name}</a>
-			{:else}
-				{name}
+			{:else if sub === false}
+				<a alt="{name} Property" class="header--link" href="#{id}">
+					{name}
+					<span class="material-symbols-outlined {kind}-80 {kind}-font-80"> link </span>
+				</a>
 			{/if}
-		</h4>
-		<div class="header--attribute">
+		</h5>
+		<div class="header--type">
 			{#if type === 'boolean'}
 				<span class="material-symbols-outlined"> check_box </span>
 			{:else if type === 'string'}
@@ -55,35 +58,30 @@
 			<value class="mdc-typography--body2">"{defaultValue}"</value>
 		</pair>
 	{/if}
-	<div class={`seperator ${kind}-80`} />
+	<hr class="{kind}-80" />
 	<slot />
-	{#if sub === false && href === ''}
-		<a alt={`${name} Attribute`} class="header--link" href={`#${id}`}>
-			<span class={`material-symbols-outlined ${kind}-90 ${kind}-font-90`}> link </span>
-		</a>
-	{/if}
 </div>
 
 <style lang="scss">
-	.seperator {
+	hr {
+		border: none;
 		height: 1px;
 		margin-top: 1rem;
 		width: 100%;
 	}
 
-	.attribute {
+	.property {
 		position: relative;
-		padding: 0 1rem 1rem 1rem;
 
 		&:hover {
-			.header--link {
+			.header--link span {
 				transition: all 0.2s ease-in-out;
 				opacity: 1;
 			}
 		}
 	}
 
-	.attribute--sub {
+	.property--sub {
 		margin-left: 1rem;
 	}
 
@@ -98,11 +96,6 @@
 	}
 
 	.header--type {
-		margin-left: 0.5rem;
-		font-family: 'Source Code Pro', monospace;
-	}
-
-	.header--attribute {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -112,25 +105,15 @@
 	.header--link {
 		color: currentColor;
 		text-decoration: none;
-		position: absolute;
-		left: -3rem;
-		top: -0.25rem;
 		display: flex;
-		opacity: 0;
-		padding: 0.25rem;
-		height: 100%;
-		width: 2.5rem;
+		gap: 0.5rem;
+		align-items: center;
 
 		span {
-			width: 32px;
-			height: 32px;
-			font-size: 24px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			border-radius: 4px;
-			margin-top: 2rem;
+			opacity: 0;
+			transition: all 0.2s ease-in-out;
+			padding: 0.25rem;
+			border-radius: 0.25rem;
 		}
 	}
 

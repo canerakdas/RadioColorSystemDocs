@@ -1,24 +1,21 @@
 <script>
-	import { onMount } from 'svelte';
-	import RangeInput from '../components/RangeInput.svelte';
-	import { RadioStatic } from 'radio-color-system';
-	export let index = 1;
+	import { onMount, getContext } from 'svelte';
 
-	let colors = [
-		{ color: { h: 230, s: 20, l: 50 }, name: 'secondary' },
-		{
-			color: { h: 34, s: 24, l: 48 },
-			name: 'primary'
-		},
-		{ color: { h: 342, s: 25, l: 61 }, name: 'tertiary' },
-		{ color: { h: 270, s: 2, l: 57 }, name: 'neutral' }
-	];
+	import RangeInput from '$components/RangeInput.svelte';
 
+	let colors = getContext('colors');
+	let color = $colors.find((color) => color.selected);
+	let index = 0;
 	let draw = () => {};
 
 	$: {
-		colors, draw();
+		index = $colors.findIndex((color) => color.selected);
+		draw($colors[index].color.h);
 	}
+
+	let angle = (color.color.h * Math.PI) / 180;
+
+	let kind = (color && color.name) || 'primary';
 
 	onMount(() => {
 		const canvas = document.getElementById('knobCanvas');
@@ -27,15 +24,19 @@
 		// Define the position of the knob's center
 		const centerX = canvas.width / 2;
 		const centerY = canvas.height / 2;
-
+		let active = color;
 		// Define the radius of the knob
 		const radius = 90;
 
 		// Define the angle of the knob (in radians)
-		let angle = (colors[index].color.h * Math.PI) / 180;
 
 		// Draw the knob
-		const drawKnob = () => {
+		const drawKnob = (hue) => {
+			if (hue) {
+				$colors[index].color.h = hue;
+				angle = (hue * Math.PI) / 180;
+				kind = $colors[index].name;
+			}
 			// Clear the canvas
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -43,8 +44,8 @@
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, radius - 20, 0, Math.PI * 2);
 			let color = getComputedStyle(document.body).getPropertyValue('--neutral-70');
-			let text = getComputedStyle(document.body).getPropertyValue('--primary-font-80');
-			let primary = getComputedStyle(document.body).getPropertyValue('--primary-50');
+			let text = getComputedStyle(document.body).getPropertyValue(`--primary-font-80`);
+			let primary = getComputedStyle(document.body).getPropertyValue(`--primary-50`);
 
 			ctx.strokeStyle = primary;
 			ctx.fillStyle = text;
@@ -82,8 +83,7 @@
 
 			// Calculate the current angle in degrees from 0 to 360
 			const degree = (angle * 180) / Math.PI;
-
-			colors[index].color.h = parseInt(degree < 0 ? 360 + degree : degree);
+			$colors[index].color.h = parseInt(degree < 0 ? 360 + degree : degree);
 		};
 
 		// Update the angle of the knob when the mouse is dragged
@@ -143,8 +143,6 @@
 	});
 </script>
 
-<RadioStatic {colors} async={true} />
-
 <header class="primary-90">
 	<div class="border" />
 	<div class="contr">
@@ -160,13 +158,13 @@
 					name="sat"
 					header="Saturation"
 					icon="vital_signs"
-					bind:value={colors[index].color.s}
+					bind:value={$colors[index].color.s}
 				/>
 				<RangeInput
 					name="light"
 					header="Light"
-					icon={colors[index].color.l > 40 ? 'light_mode' : 'dark_mode'}
-					bind:value={colors[index].color.l}
+					icon={$colors[index].color.l > 40 ? 'light_mode' : 'dark_mode'}
+					bind:value={$colors[index].color.l}
 				/>
 			</div>
 			<div>
@@ -266,34 +264,6 @@
 		flex-direction: column;
 	}
 
-	fieldset {
-		border: 2px solid var(--neutral-80);
-		color: var(--neutral-font-80);
-		border-radius: 0.5rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		min-width: 10rem;
-
-		legend {
-			color: var(--neutral-font-70);
-			display: flex;
-			align-items: center;
-		}
-	}
-	.color {
-		position: absolute;
-		display: flex;
-		top: -180px;
-		left: 0px;
-		transform: rotate(320deg);
-		z-index: 0;
-
-		&--item {
-			width: 3rem;
-			height: 40rem;
-		}
-	}
 	.knob {
 	}
 

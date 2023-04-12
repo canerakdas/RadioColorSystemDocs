@@ -1,6 +1,4 @@
 <script>
-	import Subtitle from './Subtitle.svelte';
-
 	export let header = '';
 	export let name = '';
 	export let icon = '';
@@ -8,13 +6,9 @@
 	export let max = 100;
 	export let value = 0;
 	export let datalist = true;
-
+	export let kind = 'primary';
 	const getFrequencyClass = (frequency) => {
-		if (frequency % 10 === 0) {
-			return 'primary-font-80 range-input--text mdc-typography--caption';
-		} else {
-			return 'range-input--tickmark';
-		}
+		return '';
 	};
 
 	const getFrequencyLabel = (frequency) => {
@@ -29,7 +23,7 @@
 </script>
 
 <div class="range-input">
-	<div class="range-input--header primary-font-90">
+	<div class="range-input--header {kind}-font-90">
 		{#if icon !== ''}
 			<span class="material-symbols-outlined">{icon}</span>
 			<div class="mdc-typography--headline6">{header}</div>
@@ -40,7 +34,7 @@
 		<datalist class="range-input--datalist" {id}>
 			{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as frequency}
 				<option
-					class={getFrequencyClass(frequency)}
+					class="{kind}-font-80 range-input--text mdc-typography--caption"
 					value={frequency}
 					label={getFrequencyLabel(frequency)}
 				/>

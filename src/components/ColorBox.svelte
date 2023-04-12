@@ -1,0 +1,20 @@
+<script>
+	export let kind = 'primary';
+	export let code;
+</script>
+
+<div class="{kind}-{code} {kind}-font-{code} mdc-typography--subtitle2">
+	{code}
+</div>
+
+<style>
+	div {
+		width: 5rem;
+		min-width: 5rem;
+		height: 5rem;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-end;
+		padding: 0.5rem;
+	}
+</style>
