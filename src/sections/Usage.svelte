@@ -20,6 +20,7 @@
 			lang={html()}
 		/>
 		<div>
+			<h5 class="mdc-typography--headline5">Motivation</h5>
 			<p class="mdc-typography--body2">
 				System design libraries offer a plethora of elements that can be overwhelming to navigate.
 				However, incorporating a system change library into your project can enhance your
@@ -46,6 +47,10 @@
 			flex-direction: column;
 			gap: 1rem;
 		}
+	}
+
+	h5 {
+		margin: 1rem 0 0 0;
 	}
 	// TODO: Remove editor styles from here
 	:global(.ͼ1 .cm-scroller) {

@@ -2,7 +2,7 @@
 	import Card from '$components/Card.svelte';
 	import Property from '$components/Property.svelte';
 
-	const kind = 'primary';
+	const kind = 'neutral';
 </script>
 
 <Card {kind} header={{ text: 'Color', id: 'radio-static-color', alt: 'Color Attribute' }}>
