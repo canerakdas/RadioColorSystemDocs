@@ -9,9 +9,9 @@
 
 <style>
 	div {
-		width: 5rem;
-		min-width: 5rem;
-		height: 5rem;
+		width: 4rem;
+		min-width: 4rem;
+		height: 4rem;
 		display: flex;
 		align-items: flex-start;
 		justify-content: flex-end;
