@@ -32,39 +32,45 @@
 	</label>
 	<input id={inputId} class="range-input--input" type="range" list={id} {min} {max} bind:value />
 	{#if datalist}
-		<datalist class="range-input--datalist" {id}>
+		<div class="range-input--datalist" {id}>
 			{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as frequency}
-				<option
-					class="{kind}-font-80 range-input--text mdc-typography--caption"
-					value={frequency}
-					label={getFrequencyLabel(frequency)}
-				/>
+				<p class="{kind}-font-80 range-input--text mdc-typography--caption">
+					{frequency}
+				</p>
 			{/each}
-		</datalist>
+		</div>
 	{/if}
 </div>
 
 <style lang="scss">
 	.range-input {
 		width: 100%;
+		-webkit-appearance: none;
 	}
 
 	.range-input--input {
+		-webkit-appearance: none;
+
 		width: 100%;
 		height: 0.625rem;
 
-		-webkit-appearance: none;
 		background: none;
 
 		border: 1px solid var(--primary-font-80);
 		border-radius: 2px;
 
+		/*Styling the track in Chrome*/
+		&::-webkit-slider-runnable-track {
+			-webkit-appearance: none;
+		}
+
 		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			position: relative;
+
 			width: 2.5rem;
 			height: 1.25rem;
 
-			position: relative;
-			top: -6px;
 			z-index: 2;
 			border-radius: 4px;
 
@@ -89,6 +95,10 @@
 		font-weight: 200;
 
 		padding-top: 0.15rem;
+
+		position: relative;
+		top: -12px;
+		z-index: 1;
 	}
 
 	.range-input--text,
