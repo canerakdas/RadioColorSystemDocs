@@ -8,13 +8,17 @@
 	import ColorVariant from '$sections/docs/ColorVariant.svelte';
 	import RadioActiveDocs from '$sections/docs/RadioActive.svelte';
 	import RadioStaticDocs from '$sections/docs/RadioStatic.svelte';
+	import Features from '$sections/Features.svelte';
+	import Usage from '$sections/Usage.svelte';
 </script>
 
 <Palette />
-<RadioActiveDocs />
+<Features />
+<Usage />
 <RadioStaticDocs />
-<ColorVariant />
+<RadioActiveDocs />
 <ColorOption />
+<ColorVariant />
 <Color />
 
 <div class="neutral-80 neutral-font-80">i have spoken</div>

@@ -53,11 +53,20 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			gap: 0;
+			align-items: flex-start;
+		}
 	}
 
 	.palette--colors {
 		display: flex;
 		overflow: auto;
+		@media (max-width: 768px) {
+			flex-wrap: wrap;
+		}
 	}
 
 	.colors {
@@ -72,6 +81,7 @@
 			gap: 1rem;
 			align-items: normal;
 			flex-direction: column;
+			padding: 0 0 1rem;
 		}
 	}
 
@@ -80,7 +90,14 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding-left: 1rem;
-		font-size: 0.75rem;
+
+		@media (max-width: 768px) {
+			padding: 1rem;
+			font-size: 0.75rem;
+			background: var(--neutral-70);
+			color: var(--neutral-font-70);
+			width: 100%;
+		}
 	}
 
 	.button-group {
@@ -89,7 +106,7 @@
 		overflow: auto;
 
 		@media (max-width: 768px) {
-			margin-left: 1rem;
+			padding-left: 1rem;
 		}
 	}
 

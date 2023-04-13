@@ -27,7 +27,7 @@
 		type="ColorOption[]"
 		defaultValue="[]"
 		description="The options for generating color variants"
-		href="radio-static-color-option"
+		href="#radio-static-color-option"
 		alt="Color Option Attribute"
 		{kind}
 	/>
