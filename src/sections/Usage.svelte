@@ -1,5 +1,5 @@
 <Card header="Usage" kind="secondary">
-	<div class="tt">
+	<div>
 		<p class="mdc-typography--body1">
 			System design libraries offer a plethora of elements that can be overwhelming to navigate.
 			However, incorporating a system change library into your project can enhance your productivity

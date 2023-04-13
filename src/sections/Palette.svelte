@@ -67,6 +67,12 @@
 		align-items: center;
 		padding: 1rem 1rem 1rem 0;
 		gap: 2rem;
+
+		@media (max-width: 768px) {
+			gap: 1rem;
+			align-items: normal;
+			flex-direction: column;
+		}
 	}
 
 	.title {
@@ -81,6 +87,10 @@
 		display: flex;
 		gap: 1rem;
 		overflow: auto;
+
+		@media (max-width: 768px) {
+			margin-left: 1rem;
+		}
 	}
 
 	.container {

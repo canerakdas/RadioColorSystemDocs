@@ -57,7 +57,10 @@
 		padding: 0.5rem;
 		border-radius: 0.5rem;
 		opacity: 0;
-		transition: all 0.2s ease-in-out;
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: all 0.2s ease-in-out;
+		}
 	}
 
 	.card--content :global(.property:last-child hr) {

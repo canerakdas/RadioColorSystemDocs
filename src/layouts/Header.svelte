@@ -2,166 +2,29 @@
 	import { onMount, getContext } from 'svelte';
 
 	import RangeInput from '$components/RangeInput.svelte';
+	import HueKnob from '$components/HueKnob.svelte';
 
 	let colors = getContext('colors');
 	let color = $colors.find((color) => color.selected);
 	let index = 0;
-	let draw = () => {};
 
 	$: {
 		index = $colors.findIndex((color) => color.selected);
-		draw($colors[index].color.h);
 	}
 
-	let angle = (color.color.h * Math.PI) / 180;
-
 	let kind = (color && color.name) || 'primary';
-
-	onMount(() => {
-		const canvas = document.getElementById('knobCanvas');
-		const ctx = canvas.getContext('2d');
-
-		// Define the position of the knob's center
-		const centerX = canvas.width / 2;
-		const centerY = canvas.height / 2;
-		let active = color;
-		// Define the radius of the knob
-		const radius = 90;
-
-		// Define the angle of the knob (in radians)
-
-		// Draw the knob
-		const drawKnob = (hue) => {
-			if (hue) {
-				$colors[index].color.h = hue;
-				angle = (hue * Math.PI) / 180;
-				kind = $colors[index].name;
-			}
-			// Clear the canvas
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-			// Draw the knob's background
-			ctx.beginPath();
-			ctx.arc(centerX, centerY, radius - 20, 0, Math.PI * 2);
-			let color = getComputedStyle(document.body).getPropertyValue('--neutral-70');
-			let text = getComputedStyle(document.body).getPropertyValue(`--primary-font-80`);
-			let primary = getComputedStyle(document.body).getPropertyValue(`--primary-50`);
-
-			ctx.strokeStyle = primary;
-			ctx.fillStyle = text;
-			ctx.fill();
-
-			// Draw the knob's indicator
-			ctx.beginPath();
-			ctx.moveTo(centerX, centerY);
-			ctx.lineTo(
-				centerX + Math.cos(angle - Math.PI / 2) * (radius - 30),
-				centerY + Math.sin(angle - Math.PI / 2) * (radius - 30)
-			);
-			ctx.lineWidth = 4;
-			ctx.lineCap = 'round';
-
-			ctx.stroke();
-
-			ctx.strokeStyle = primary;
-
-			ctx.strokeStyle = text;
-
-			// Draw lines at every 10 degrees
-			for (let i = 0; i < 8; i++) {
-				const angle = (i * 45 * Math.PI) / 180;
-				const x1 = centerX + Math.cos(angle) * radius;
-				const y1 = centerY + Math.sin(angle) * radius;
-				const x2 = centerX + Math.cos(angle) * (radius - 7);
-				const y2 = centerY + Math.sin(angle) * (radius - 7);
-				ctx.lineWidth = 2;
-				ctx.beginPath();
-				ctx.moveTo(Number(Math.ceil(x1).toFixed(2)), Number(Math.ceil(y1).toFixed(2)));
-				ctx.lineTo(Number(Math.ceil(x2).toFixed(2)), Number(Math.ceil(y2).toFixed(2)));
-				ctx.stroke();
-			}
-
-			// Calculate the current angle in degrees from 0 to 360
-			const degree = (angle * 180) / Math.PI;
-			$colors[index].color.h = parseInt(degree < 0 ? 360 + degree : degree);
-		};
-
-		// Update the angle of the knob when the mouse is dragged
-		canvas.addEventListener('mousedown', (event) => {
-			const rect = canvas.getBoundingClientRect();
-			const mouseX = event.clientX - rect.left;
-			const mouseY = event.clientY - rect.top;
-
-			if (Math.sqrt((mouseX - centerX) ** 2 + (mouseY - centerY) ** 2) <= radius) {
-				canvas.addEventListener('mousemove', dragKnob);
-			}
-		});
-
-		// Stop updating the angle of the knob when the mouse is released
-		canvas.addEventListener('mouseup', () => {
-			canvas.removeEventListener('mousemove', dragKnob);
-		});
-
-		// Update the angle of the knob when it is touched and dragged
-		canvas.addEventListener(
-			'touchstart',
-			(event) => {
-				const rect = canvas.getBoundingClientRect();
-				const touchX = event.touches[0].clientX - rect.left;
-				const touchY = event.touches[0].clientY - rect.top;
-
-				if (Math.sqrt((touchX - centerX) ** 2 + (touchY - centerY) ** 2) <= radius) {
-					canvas.addEventListener('touchmove', dragKnob);
-				}
-				document.body.style.overflow = 'hidden';
-			},
-			{ passive: true }
-		);
-
-		// Stop updating the angle of the knob when the touch is released
-		canvas.addEventListener(
-			'touchend',
-			() => {
-				canvas.removeEventListener('touchmove', dragKnob);
-				document.body.style.overflow = 'initial';
-			},
-			{ passive: true }
-		);
-
-		// Update the angle of the knob based on the mouse position
-		function dragKnob(event) {
-			const rect = canvas.getBoundingClientRect();
-
-			if (event.touches) {
-				const touchX = event.touches[0].clientX - rect.left;
-				const touchY = event.touches[0].clientY - rect.top;
-
-				angle = Math.atan2(touchY - centerY, touchX - centerX) + Math.PI / 2;
-			} else {
-				const mouseX = event.clientX - rect.left;
-				const mouseY = event.clientY - rect.top;
-
-				angle = Math.atan2(mouseY - centerY, mouseX - centerX) + Math.PI / 2;
-			}
-
-			drawKnob();
-		}
-
-		draw = drawKnob;
-	});
 </script>
 
-<header class="primary-90">
-	<div class="border" />
-	<div class="contr">
+<header>
+	<div class="header">
 		<div>
-			<h1 class="header-logo">
-				<span class="header-logo--main primary-font-90 mdc-typography--headline2">Radio</span>
-				<span class="header-logo--sub primary-font-90 mdc-typography--headline4">Color System</span>
+			<h1 class="header--logo primary-font-90">
+				<span class="mdc-typography--headline2">Radio</span>
+				<span class="mdc-typography--headline4">Color System</span>
 			</h1>
 		</div>
-		<div class="r-side">
-			<div class="vertical-container">
+		<div class="header--controls">
+			<div class="header--range">
 				<RangeInput
 					name="sat"
 					header="Saturation"
@@ -176,16 +39,16 @@
 				/>
 			</div>
 			<div>
-				<div class="knob--header primary-font-90">
+				<div class="header--knob primary-font-90">
 					<span class="material-symbols-outlined">palette</span>
 					<div class="mdc-typography--headline6">Hue</div>
 				</div>
-				<canvas id="knobCanvas" width="200" height="200" />
+				<HueKnob />
 			</div>
 		</div>
 	</div>
-	<div class="hfooter">
-		<svg class="water">
+	<div class="animation">
+		<svg class="animation--water">
 			<defs>
 				<pattern
 					id="water"
@@ -203,7 +66,7 @@
 
 			<rect width="100%" height="20px" fill="url(#water)" />
 		</svg>
-		<svg class="tree" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="black">
+		<svg class="animation--tree">
 			<defs>
 				<pattern
 					id="tree"
@@ -237,7 +100,76 @@
 </header>
 
 <style lang="scss">
-	.hfooter {
+	header {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+		padding: 4rem 1rem 1rem 1rem;
+		overflow: hidden;
+		margin: 2rem 0;
+		border-radius: 1rem;
+		background: linear-gradient(270deg, var(--neutral-80), var(--primary-80));
+		background-size: 400% 400%;
+		position: relative;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: backgroundGradient 32s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+		}
+
+		@media (max-width: 768px) {
+			padding: 1rem;
+		}
+	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.header--controls {
+		display: flex;
+		gap: 4rem;
+		align-items: center;
+		z-index: 1;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 2rem;
+		}
+	}
+
+	.header--range {
+		display: flex;
+		gap: 2rem;
+		flex-direction: column;
+		width: 24rem;
+
+		@media (max-width: 768px) {
+			width: 100%;
+		}
+	}
+
+	.header--knob {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		margin-left: 0.5rem;
+	}
+
+	.header--logo {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+
+		padding: 0.5rem 0;
+	}
+
+	.animation {
 		position: relative;
 		overflow: hidden;
 		border-radius: 0 0 1rem 1rem;
@@ -246,107 +178,57 @@
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
-	}
-	.contr {
-		display: flex;
-		justify-content: space-between;
-	}
-	.knob--header {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-		margin-left: 0.5rem;
-	}
-	#knobCanvas {
-		cursor: pointer;
-	}
-	.r-side {
-		display: flex;
-		gap: 4rem;
-		align-items: center;
-		z-index: 1;
-	}
-	.vertical-container {
-		display: flex;
-		gap: 2rem;
-		flex-direction: column;
-	}
 
-	.knob {
-	}
-
-	header {
-		display: flex;
-		flex-direction: column;
-		gap: 4rem;
-
-		overflow: hidden;
-		margin: 2rem 0;
-		border-radius: 1rem;
-		background: linear-gradient(270deg, var(--neutral-80), var(--primary-80));
-		background-size: 400% 400%;
-		position: relative;
-
-		animation: AnimationName 32s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-
-		@keyframes AnimationName {
-			0% {
-				background-position: 0% 50%;
-			}
-			50% {
-				background-position: 100% 50%;
-			}
-			100% {
-				background-position: 0% 50%;
-			}
-		}
-		padding: 1rem;
-	}
-
-	.header-logo {
-		display: flex;
-		flex-direction: column;
-		align-items: start;
-
-		padding: 0.5rem 0;
-		border-radius: 4px;
-
-		&--main {
-			z-index: 1;
-		}
-
-		&--sub {
-			z-index: 1;
+		@media (max-width: 768px) {
+			display: none;
 		}
 	}
 
-	.tree {
-		fill: var(--primary-50);
-		height: 92px;
-		animation: scrolll 16s linear infinite;
+	.animation--tree {
 		width: calc(100% + 48px);
+		height: 92px;
+		fill: var(--primary-50);
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: scrollToLeft 16s linear infinite;
+		}
 	}
 
-	.water {
+	.animation--water {
 		height: 20px;
 		width: calc(100% + 27px);
 		fill: var(--primary-50);
-		animation: scrollr 16s linear infinite;
 
 		padding-top: 4px;
 		position: relative;
 		left: -27px;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: scrollToRight 16s linear infinite;
+		}
 	}
 
-	@keyframes scrollr {
+	@keyframes scrollToRight {
 		100% {
 			transform: translateX(27px);
 		}
 	}
 
-	@keyframes scrolll {
+	@keyframes scrollToLeft {
 		100% {
 			transform: translateX(-48px);
+		}
+	}
+
+	@keyframes backgroundGradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
 		}
 	}
 </style>

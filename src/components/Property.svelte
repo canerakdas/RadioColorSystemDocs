@@ -75,8 +75,11 @@
 
 		&:hover {
 			.header--link span {
-				transition: all 0.2s ease-in-out;
 				opacity: 1;
+
+				@media (prefers-reduced-motion: no-preference) {
+					transition: all 0.2s ease-in-out;
+				}
 			}
 		}
 	}
@@ -111,9 +114,12 @@
 
 		span {
 			opacity: 0;
-			transition: all 0.2s ease-in-out;
 			padding: 0.25rem;
 			border-radius: 0.25rem;
+
+			@media (prefers-reduced-motion: no-preference) {
+				transition: all 0.2s ease-in-out;
+			}
 		}
 	}
 

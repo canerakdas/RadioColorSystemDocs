@@ -46,7 +46,7 @@
 
 <style lang="scss">
 	.range-input {
-		width: 400px;
+		width: 100%;
 	}
 
 	.range-input--input {
@@ -72,8 +72,9 @@
 			background: var(--primary-font-90);
 			cursor: pointer;
 
-			transition: background 0.1s ease-in-out;
-
+			@media (prefers-reduced-motion: no-preference) {
+				transition: background 0.1s ease-in-out;
+			}
 			&:hover {
 				background: var(--primary-font-80);
 			}
