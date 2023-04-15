@@ -219,7 +219,7 @@
 
 	.header--redirect {
 		position: absolute;
-
+		z-index: 3;
 		right: 1rem;
 		bottom: 8.8rem;
 		@media (max-width: 768px) {
