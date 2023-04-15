@@ -83,6 +83,10 @@
 		border-radius: 8px;
 		padding: 1rem;
 
+		@media (max-width: 1024px) {
+			padding: 1rem 0;
+		}
+
 		:global([title='Fold line']) {
 			opacity: 0;
 		}

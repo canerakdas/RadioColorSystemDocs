@@ -26,5 +26,6 @@
 <RadioStatic colors={$colors} async={true} />
 <Container>
 	<Header />
-	<slot />
 </Container>
+
+<slot />

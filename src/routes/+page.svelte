@@ -12,19 +12,25 @@
 	import ActiveUsage from '$sections/ActiveUsage.svelte';
 	import RadioActiveExamples from '$sections/example/RadioActive.svelte';
 
-	import Card from '$components/Card.svelte';
+	import Container from '$components/Container.svelte';
 
 	let index = 1;
 	let images = [1, 2, 3];
 	let target = `#image${index}`;
 </script>
 
-<Palette />
-<Usage />
-<RadioActiveExamples />
-<ActiveUsage />
-<RadioActiveDocs />
-<RadioStaticDocs />
-<ColorVariant />
-<ColorOption />
-<Color />
+<Container>
+	<Palette />
+	<Usage />
+</Container>
+<Container kind="dynamic">
+	<RadioActiveExamples />
+</Container>
+<Container>
+	<ActiveUsage />
+	<RadioActiveDocs />
+	<RadioStaticDocs />
+	<ColorVariant />
+	<ColorOption />
+	<Color />
+</Container>
