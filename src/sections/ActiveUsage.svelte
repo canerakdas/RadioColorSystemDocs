@@ -6,58 +6,50 @@
 	const kind = 'neutral';
 </script>
 
-<Card {kind} header={{ text: 'Basic Usage', id: 'usage', alt: 'Basic Usage of RadioStatic' }}>
-	<div class="usage">
+<Card
+	{kind}
+	header={{
+		text: 'Usage of content-based color palettes',
+		id: 'radio-active-usage',
+		alt: 'Usage of Content-based color palettes'
+	}}
+>
+	<div class="active-usage">
 		<CodeMirror
 			readonly={true}
 			tabSize={2}
 			useTab={false}
 			basic={true}
-			value={`<script>\n import { RadioStatic } from 'radio-color-system';\n\n let colors = [\n	{ color: { h: 220, s: 32, l: 48 }, name: 'primary' }\n  ]; \n</script>\n\n<RadioStatic {colors} async={true} />\n\n<div class="card primary-90 primary-90-text">\n	<h3>Primary Color</h3>\n	<p>This is the way.</p>\n</div>\n\n<style>\n.card {\n	padding: 1rem;\n	border-radius: 0.5rem;\n	margin-bottom: 1rem;\n} \n</style>`.replace(
+			value={`<script>\n import { RadioActive } from 'radio-color-system';\n</script>\n\n<RadioActive>\n	<img src="./image.png" alt="Rick Astley dancing" />\n	<div class="card dynamic-90 dynamic-90-text">\n		<h3>Dynamic Color</h3>\n		<p>Dynamic colors are great</p>\n	</div>\n</RadioActive>\n\n<style>\n.card {\n	padding: 1rem;\n	border-radius: 0.5rem;\n	margin-bottom: 1rem;\n} \n</style>`.replace(
 				' *{}',
 				''
 			)}
 			lang={html()}
 		/>
-		<div>
-			<h5 class="mdc-typography--headline5">Motivation</h5>
-			<p class="mdc-typography--body2">
-				System design libraries offer a plethora of elements that can be overwhelming to navigate.
-				However, incorporating a system change library into your project can enhance your
-				productivity and simplify development processes. Yet, customization and optimization can be
-				challenging to implement. Fortunately, Svelte's unique and intuitive structure eliminates
-				the need for most component library dependencies.
-			</p>
-			<p class="mdc-typography--body2">
-				With Radio Color System & Svelte, you can easily create your own color system and rapidly
-				develop your desired components.
-			</p>
-			<a href="#radio-static" class="{kind}-font-90 mdc-typography--subtitle2 underline"
-				>Advanced usage</a
-			>
-		</div>
+
+		<a href="#radio-active" class="{kind}-font-90 mdc-typography--subtitle2 underline"
+			>Advanced usage</a
+		>
 	</div>
 </Card>
 
 <style lang="scss">
-	.usage {
-		display: flex;
-		gap: 2rem;
+	.active-usage {
 		margin-top: 2rem;
-
-		@media (max-width: 1024px) {
-			flex-direction: column;
-			gap: 1rem;
-		}
 	}
 
-	.usage :global(.cm-editor) {
+	.active-usage :global(.cm-editor) {
 		background: var(--neutral-90);
 		color: var(--neutral-font-90);
+		height: 580px;
 	}
 
 	h5 {
 		margin: 1rem 0 0 0;
+	}
+
+	a {
+		padding: 0 1rem;
 	}
 	// TODO: Remove editor styles from here
 	:global(.ͼ1 .cm-scroller) {

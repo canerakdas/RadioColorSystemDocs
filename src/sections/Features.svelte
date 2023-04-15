@@ -3,21 +3,21 @@
 </script>
 
 <div class="feature">
-	<div class="secondary-70 secondary-font-70 feature--item">
+	<div class="dynamic-90 dynamic-font-90 feature--item">
 		<span class="material-symbols-outlined"> point_scan </span>
-		<p class="mdc-typography--body2 secondary-80 secondary-font-80">
+		<p class="mdc-typography--body2">
 			Works independently of any design system and it has a single purpose.
 		</p>
 	</div>
-	<div class="secondary-70 secondary-font-70 feature--item">
+	<div class="dynamic-90 dynamic-font-90 feature--item">
 		<span class="material-symbols-outlined"> style </span>
-		<p class="mdc-typography--body2 secondary-80 secondary-font-80">
+		<p class="mdc-typography--body2">
 			Can dynamically create a color palette based on visual content.
 		</p>
 	</div>
-	<div class="secondary-70 secondary-font-70 feature--item">
+	<div class="dynamic-90 dynamic-font-90 feature--item">
 		<span class="material-symbols-outlined"> deployed_code </span>
-		<p class="mdc-typography--body2 secondary-80 secondary-font-80">
+		<p class="mdc-typography--body2">
 			Allows you to work asynchronously and gain from the colors that will come pre-loaded in your
 			project.
 		</p>
@@ -44,6 +44,7 @@
 		border-radius: 0.5rem;
 		max-width: 33.33333%;
 		overflow: hidden;
+		box-shadow: 0 0 0 1px var(--dynamic-90), 0 1px 3px 0 var(--dynamic-90);
 
 		@media (max-width: 768px) {
 			max-width: 100%;

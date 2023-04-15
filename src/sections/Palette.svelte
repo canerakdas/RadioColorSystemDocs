@@ -8,7 +8,11 @@
 
 	let color = $colors.find((color) => color.selected);
 	$: kind = (color && color.name) || 'primary';
+
+	let innerWidth = 0;
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="container">
 	<div class="neutral-80 colors">
@@ -33,7 +37,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="{kind}-0 palette">
+	<div class={innerWidth <= 768 ? `${kind}-100 palette` : `${kind}-0 palette`}>
 		<div class="title {kind}-font-0">
 			<span class="material-symbols-outlined"> palette </span>
 			<span class="mdc-typography--subtitle2">Palette</span>

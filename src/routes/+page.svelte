@@ -8,17 +8,23 @@
 	import ColorVariant from '$sections/docs/ColorVariant.svelte';
 	import RadioActiveDocs from '$sections/docs/RadioActive.svelte';
 	import RadioStaticDocs from '$sections/docs/RadioStatic.svelte';
-	import Features from '$sections/Features.svelte';
 	import Usage from '$sections/Usage.svelte';
+	import ActiveUsage from '$sections/ActiveUsage.svelte';
+	import RadioActiveExamples from '$sections/example/RadioActive.svelte';
+
+	import Card from '$components/Card.svelte';
+
+	let index = 1;
+	let images = [1, 2, 3];
+	let target = `#image${index}`;
 </script>
 
 <Palette />
-<Features />
 <Usage />
-<RadioStaticDocs />
+<RadioActiveExamples />
+<ActiveUsage />
 <RadioActiveDocs />
-<ColorOption />
+<RadioStaticDocs />
 <ColorVariant />
+<ColorOption />
 <Color />
-
-<div class="neutral-80 neutral-font-80">i have spoken</div>
