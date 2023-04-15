@@ -14,11 +14,9 @@
 	}}
 >
 	<Property
-		name="color"
-		type="Color"
-		href="#radio-static-color"
-		alt="Color Attribute"
-		description="The base color to use for generating the color variants."
+		name="color | rgb | hex"
+		type="ColorInput"
+		description="The base color to use for generating the color variants. You can use Color type or a string in the format of rgb or hex."
 		{kind}
 	/>
 	<Property
