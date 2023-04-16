@@ -6,10 +6,7 @@
 	const kind = 'neutral';
 </script>
 
-<Card
-	{kind}
-	header={{ text: 'Basic Usage', id: 'usage', alt: 'Basic Usage of RadioStatic', type: 'h2' }}
->
+<Card {kind} header={{ text: 'Basic Usage', id: 'usage', alt: 'Basic Usage of RadioStatic' }}>
 	<div class="usage">
 		<CodeMirror
 			readonly={true}

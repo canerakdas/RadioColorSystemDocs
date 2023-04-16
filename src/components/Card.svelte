@@ -4,13 +4,13 @@
 		text: '',
 		id: '',
 		alt: '',
-		type: 'h4'
+		type: 'h2'
 	};
 </script>
 
 <div class="card {kind}-90 {kind}-font-90">
 	{#if header.text !== ''}
-		<svelte:element this={header.type || 'h4'} id={header.id} class="mdc-typography--headline4">
+		<svelte:element this={header.type || 'h2'} id={header.id} class="mdc-typography--headline4">
 			{#if header.alt}
 				<a href="#{header.id}" alt={header.alt}>
 					{header.text}

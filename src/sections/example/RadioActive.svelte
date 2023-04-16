@@ -20,7 +20,7 @@
 							width="256"
 							height="256"
 							id={`image${index}`}
-							src={`./images/${index}.png`}
+							src={`./images/${index}.jpg`}
 							alt="Selected image"
 						/>
 					</div>
@@ -63,7 +63,7 @@
 					class={`${image === index ? 'active' : 'inactive'}`}
 					id={`image${image}`}
 					alt="Inactive image"
-					src={`./images/${image}.png`}
+					src={`./images/${image}.jpg`}
 					on:click={(event) => {
 						target = `#image${image}`;
 						index = image;

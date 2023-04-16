@@ -18,7 +18,7 @@
 
 <div class={propertyClass}>
 	<div class="header">
-		<h5 class="mdc-typography--headline5">
+		<h3 class="mdc-typography--headline5">
 			{#if href}
 				<a {href} {alt}>{name}</a>
 			{:else if sub === false}
@@ -27,7 +27,7 @@
 					<span class="material-symbols-outlined {kind}-80 {kind}-font-80"> link </span>
 				</a>
 			{/if}
-		</h5>
+		</h3>
 		<div class="header--type">
 			{#if type === 'boolean'}
 				<span class="material-symbols-outlined"> check_box </span>
