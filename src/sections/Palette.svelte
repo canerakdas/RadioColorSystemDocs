@@ -95,6 +95,11 @@
 		gap: 0.5rem;
 		padding-left: 1rem;
 
+		span {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
 		@media (max-width: 768px) {
 			padding: 1rem;
 			font-size: 0.75rem;

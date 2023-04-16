@@ -16,7 +16,13 @@
 			<div>
 				<div class="dynamic--detail">
 					<div class="active--container">
-						<img id={`image${index}`} src={`./images/${index}.png`} alt="Selected image" />
+						<img
+							width="256"
+							height="256"
+							id={`image${index}`}
+							src={`./images/${index}.png`}
+							alt="Selected image"
+						/>
 					</div>
 					<div class="active--content">
 						<h4 class="mdc-typography--headline4">
@@ -52,6 +58,8 @@
 		<div class="passive--container">
 			{#each images.filter((image) => image !== index) as image}
 				<img
+					width="122"
+					height="122"
 					class={`${image === index ? 'active' : 'inactive'}`}
 					id={`image${image}`}
 					alt="Inactive image"

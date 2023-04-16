@@ -134,5 +134,10 @@
 		gap: 0.5rem;
 		align-items: center;
 		margin-bottom: 0.5rem;
+
+		span {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
 	}
 </style>

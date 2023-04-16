@@ -3,13 +3,14 @@
 	export let header = {
 		text: '',
 		id: '',
-		alt: ''
+		alt: '',
+		type: 'h4'
 	};
 </script>
 
 <div class="card {kind}-90 {kind}-font-90">
 	{#if header.text !== ''}
-		<h4 id={header.id} class="mdc-typography--headline4">
+		<svelte:element this={header.type || 'h4'} id={header.id} class="mdc-typography--headline4">
 			{#if header.alt}
 				<a href="#{header.id}" alt={header.alt}>
 					{header.text}
@@ -18,7 +19,7 @@
 			{:else}
 				{header.text}
 			{/if}
-		</h4>
+		</svelte:element>
 	{/if}
 	<div class="card--content {kind}-font-90">
 		<slot />
@@ -34,7 +35,11 @@
 		padding: 1rem;
 	}
 
-	h4 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
 		margin: 1rem 0 0 0;
 
 		&:hover {
@@ -50,16 +55,16 @@
 
 			color: currentColor;
 			text-decoration: none;
-		}
-	}
 
-	h4 a span {
-		padding: 0.5rem;
-		border-radius: 0.5rem;
-		opacity: 0;
+			span {
+				padding: 0.5rem;
+				border-radius: 0.5rem;
+				opacity: 0;
 
-		@media (prefers-reduced-motion: no-preference) {
-			transition: all 0.2s ease-in-out;
+				@media (prefers-reduced-motion: no-preference) {
+					transition: all 0.2s ease-in-out;
+				}
+			}
 		}
 	}
 

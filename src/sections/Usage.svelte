@@ -6,7 +6,10 @@
 	const kind = 'neutral';
 </script>
 
-<Card {kind} header={{ text: 'Basic Usage', id: 'usage', alt: 'Basic Usage of RadioStatic' }}>
+<Card
+	{kind}
+	header={{ text: 'Basic Usage', id: 'usage', alt: 'Basic Usage of RadioStatic', type: 'h2' }}
+>
 	<div class="usage">
 		<CodeMirror
 			readonly={true}
@@ -20,7 +23,7 @@
 			lang={html()}
 		/>
 		<div>
-			<h5 class="mdc-typography--headline5">Motivation</h5>
+			<h3 class="mdc-typography--headline5">Motivation</h3>
 			<p class="mdc-typography--body2">
 				System design libraries offer a plethora of elements that can be overwhelming to navigate.
 				However, incorporating a system change library into your project can enhance your
@@ -56,7 +59,10 @@
 		color: var(--neutral-font-90);
 	}
 
-	h5 {
+	h5,
+	h4,
+	h3,
+	h2 {
 		margin: 1rem 0 0 0;
 	}
 	// TODO: Remove editor styles from here

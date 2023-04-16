@@ -102,6 +102,7 @@
 			target="_blank"
 			href="https://www.npmjs.com/package/radio-color-system"
 			alt="NPM page of Radio color system"
+			aria-label="NPM page of Radio color system"
 		>
 			<svg viewBox="0 0 780 250" height="16">
 				<path
@@ -113,6 +114,7 @@
 			target="_blank"
 			href="https://github.com/canerakdas/RadioColorSystem"
 			alt="Github page of Radio color system"
+			aria-label="Github page of Radio color system"
 		>
 			<svg height="24" viewBox="0 0 45 16" width="67.2">
 				<path
@@ -183,6 +185,11 @@
 		gap: 0.5rem;
 		align-items: center;
 		margin-left: 0.5rem;
+
+		span {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
 	}
 
 	.header--logo {

@@ -11,7 +11,8 @@
 	header={{
 		text: 'Usage of content-based color palettes',
 		id: 'radio-active-usage',
-		alt: 'Usage of Content-based color palettes'
+		alt: 'Usage of Content-based color palettes',
+		type: 'h2'
 	}}
 >
 	<div class="active-usage">
