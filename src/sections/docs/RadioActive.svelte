@@ -39,15 +39,7 @@
 		alt="Color Option Attribute"
 		{kind}
 		optional
-	>
-		<span class="mdc-typography--subtitle1">Default</span>
-		<pre><code
-				>&lbrace;
-  color: &lbrace;h: 0, s: 0, l: 50&rbrace;,
-  name: 'dynamic',
-&rbrace;</code
-			></pre>
-	</Property>
+	/>
 </Card>
 
 <style>
