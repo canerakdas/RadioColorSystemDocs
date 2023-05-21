@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@codemirror/lang-html": "^6.4.3",
 		"@material/typography": "^14.0.0",
-		"radio-color-system": "^0.1.6",
+		"radio-color-system": "^0.2.0",
 		"sass": "^1.60.0",
 		"svelte-codemirror-editor": "^1.1.0"
 	}
