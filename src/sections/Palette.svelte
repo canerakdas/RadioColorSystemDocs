@@ -10,44 +10,52 @@
 	$: kind = (color && color.name) || 'primary';
 
 	let innerWidth = 0;
+	let palette = false;
 </script>
 
 <svelte:window bind:innerWidth />
 
-<div class="container">
-	<div class="neutral-80 colors">
-		<div class="title neutral-font-80">
-			<span class="material-symbols-outlined"> format_paint </span>
-			<span class="mdc-typography--subtitle2">Colors</span>
-		</div>
-		<div class="button-group">
-			{#each $colors as color}
-				<Button
-					icon={color.selected ? 'radio_button_checked' : 'radio_button_unchecked'}
-					kind={color.selected ? (kind === 'neutral' ? 'primary' : kind) : 'neutral'}
-					active={color.selected}
-					on:click={() => {
-						kind = color.name;
-						$colors.find((color) => color.selected).selected = false;
-						color.selected = true;
-					}}
+<div
+	class="neutral-font-90 mdc-typography--subtitle1 accordion"
+	on:click={() => (palette = !palette)}
+>
+	Show palette
+	<span class="material-symbols-outlined"> expand_more </span>
+</div>
+<div class={palette === true ? 'container h-initial' : 'container'}>
+	{#each $colors as color}
+		{#if Array.isArray(color.name)}
+			{#each color.name as name}
+				<div
+					class={innerWidth <= 768
+						? `${name}-100 ${name}-font-100 palette`
+						: `${name}-0 ${name}-font-100 palette`}
 				>
-					{color.name}
-				</Button>
+					<div class="title {name}-font-0">
+						<span class="material-symbols-outlined"> palette </span>
+						<span class="mdc-typography--subtitle2">{name}</span>
+					</div>
+					<div class="palette--colors">
+						{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as code}
+							<ColorBox kind={name} {code} />
+						{/each}
+					</div>
+				</div>
 			{/each}
-		</div>
-	</div>
-	<div class={innerWidth <= 768 ? `${kind}-100 palette` : `${kind}-0 palette`}>
-		<div class="title {kind}-font-0">
-			<span class="material-symbols-outlined"> palette </span>
-			<span class="mdc-typography--subtitle2">Palette</span>
-		</div>
-		<div class="palette--colors">
-			{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as code}
-				<ColorBox {kind} {code} />
-			{/each}
-		</div>
-	</div>
+		{:else}
+			<div class={innerWidth <= 768 ? `${color.name}-100 palette` : `${color.name}-0 palette`}>
+				<div class="title {color.name}-font-0">
+					<span class="material-symbols-outlined"> palette </span>
+					<span class="mdc-typography--subtitle2">{color.name}</span>
+				</div>
+				<div class="palette--colors">
+					{#each [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as code}
+						<ColorBox kind={color.name} {code} />
+					{/each}
+				</div>
+			</div>
+		{/if}
+	{/each}
 </div>
 
 <style lang="scss">
@@ -57,6 +65,11 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
+		border-bottom: 1px solid currentColor;
+
+		&:last-child {
+			border-bottom: none;
+		}
 
 		@media (max-width: 768px) {
 			flex-direction: column;
@@ -125,5 +138,20 @@
 		border-radius: 8px;
 		flex-direction: column;
 		overflow: hidden;
+		opacity: 0;
+		height: 0;
+	}
+
+	.accordion {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		padding: 1rem 0;
+	}
+
+	.h-initial {
+		transition: 0.26s ease-in all;
+		opacity: 1;
+		height: initial;
 	}
 </style>
