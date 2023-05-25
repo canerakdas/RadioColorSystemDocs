@@ -10,7 +10,7 @@
 	let target = `#image${index}`;
 </script>
 
-<RadioActive {target}>
+<RadioActive {target} colors={[{ name: ['dynamic'] }]}>
 	<Card kind="dynamic">
 		<div class="dynamic--content">
 			<div>
