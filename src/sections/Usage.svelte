@@ -13,10 +13,33 @@
 			tabSize={2}
 			useTab={false}
 			basic={true}
-			value={`<script>\n import { RadioStatic } from 'radio-color-system';\n\n let colors = [\n	{ color: { h: 220, s: 32, l: 48 }, name: 'primary' }\n  ]; \n</script>\n\n<RadioStatic {colors} async={true} />\n\n<div class="card primary-90 primary-90-text">\n	<h3>Primary Color</h3>\n	<p>Primary Color.</p>\n</div>\n\n<style>\n.card {\n	padding: 1rem;\n	border-radius: 0.5rem;\n	margin-bottom: 1rem;\n} \n</style>`.replace(
-				' *{}',
-				''
-			)}
+			value={`<script>
+  import { RadioStatic } from 'radio-color-system';
+
+  let colors = [{
+      color: '#0652da',
+      name: ['primary', 'secondary', 'tertiary']
+    },
+    {
+      color: '#919191',
+      name: 'neutral'
+    }
+  ];
+</script>
+
+<RadioStatic {colors} async={true} />
+
+<div class="primary-90 primary-90-text">
+  Primary Color
+</div>
+
+<div class="secondary-50 primary-50-text">
+  Secondary Color
+</div>
+
+<div class="tertiary-40 tertiary-40-text">
+  Tertiary Color
+</div>`.replace(' *{}', '')}
 			lang={html()}
 		/>
 		<div>
