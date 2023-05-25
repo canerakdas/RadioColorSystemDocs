@@ -8,7 +8,7 @@
 	};
 </script>
 
-<div class="card {kind}-90 {kind}-font-90">
+<div class="card {kind}-80 {kind}-font-80">
 	{#if header.text !== ''}
 		<svelte:element this={header.type || 'h2'} id={header.id} class="mdc-typography--headline4">
 			{#if header.alt}
@@ -21,7 +21,7 @@
 			{/if}
 		</svelte:element>
 	{/if}
-	<div class="card--content {kind}-font-90">
+	<div class="card--content {kind}-font-80">
 		<slot />
 	</div>
 </div>
