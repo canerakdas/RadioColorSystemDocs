@@ -2,7 +2,7 @@
 	export let kind = 'neutral';
 </script>
 
-<div class={kind !== 'neutral' ? `${kind}-80 wide-content` : ''}>
+<div class={kind !== 'neutral' ? `${kind}-90 wide-content` : ''}>
 	<div class="container"><slot /></div>
 </div>
 
