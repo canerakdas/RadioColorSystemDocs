@@ -3,13 +3,13 @@
 </script>
 
 <div class="feature">
-	<div class="dynamic-90 dynamic-font-90 feature--item">
+	<div class="dynamic-80 dynamic-font-80 feature--item">
 		<span class="material-symbols-outlined"> point_scan </span>
 		<p class="mdc-typography--body2">
 			Works independently of any design system and it has a single purpose.
 		</p>
 	</div>
-	<div class="dynamic-90 dynamic-font-90 feature--item">
+	<div class="dynamic-80 dynamic-font-80 feature--item">
 		<span class="material-symbols-outlined"> deployed_code </span>
 		<p class="mdc-typography--body2">
 			Allows you to work asynchronously and gain from the colors that will come pre-loaded in your
@@ -39,7 +39,7 @@
 		border-radius: 0.5rem;
 		max-width: 48%;
 		overflow: hidden;
-		box-shadow: 0 0 0 1px var(--dynamic-90), 0 1px 3px 0 var(--dynamic-90);
+		box-shadow: 0 0 0 1px var(--dynamic-80), 0 1px 3px 0 var(--dynamic-80);
 
 		@media (max-width: 768px) {
 			max-width: 100%;
