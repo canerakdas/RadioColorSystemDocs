@@ -58,7 +58,7 @@
 			<value class="mdc-typography--body2">"{defaultValue}"</value>
 		</pair>
 	{/if}
-	<hr class="{kind}-80" />
+	<hr class="{kind}-70" />
 	<slot />
 </div>
 
